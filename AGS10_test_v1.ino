@@ -1,7 +1,6 @@
 /*
-  Paradisetronic - Beispielcode
+  Paradisetronic.com - Beispielcode
   --------------------------------------------
-  
   
   Verdrahtung (Arduino UNO / Nano):
     VCC -> 3.3V
@@ -10,15 +9,13 @@
     SCL -> A5
   
   Hinweis:
-    - Verwenden Sie Pull-up-Widerstände (2–10 kΩ) auf SDA und SCL, 
-      falls Ihr Modul keine eingebauten hat.
     - Der Sensor benötigt mindestens 120 Sekunden Vorheizzeit.
     - Zwischen zwei Messungen mindestens 1,5 Sekunden warten.
 */
 
 #include <Wire.h>  // Bibliothek für I²C-Kommunikation
 //  I²C-Adresse und Register laut Datenblatt 
-#define AGS10_ADDR 0x1A               // Standardadresse (7-bit)
+#define AGS10_ADDR          0x1A      // Standardadresse (7-bit)
 #define REG_DATA_ACQ        0x00      // TVOC-Messwert lesen
 #define REG_READ_VERSION    0x11      // Firmware-Version lesen
 #define REG_READ_RESISTANCE 0x20      // Sensorwiderstand lesen
@@ -89,9 +86,9 @@ void setup() {
   Serial.begin(115200);
   Wire.begin();
 
-  Serial.println(F("Paradisetronic - AGS10 TVOC Sensor Test"));
-  Serial.println(F("Bitte mindestens 2 Minuten Vorheizzeit beachten..."));
-  delay(2000);
+  Serial.println(F("Paradisetronic.com - AGS10 TVOC Sensor Test"));
+  Serial.println(F("2 Minuten vorheizen..."));
+  delay(120000);
 
   // Firmware-Version lesen
   uint8_t fw;
@@ -132,3 +129,4 @@ void loop() {
   // Messintervall (alle 2 Sekunden)
   delay(2000);
 }
+
